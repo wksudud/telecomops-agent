@@ -1,0 +1,12 @@
+__pycache__/
+*.pyc
+.streamlit/
+artifacts/
+data/
+knowledge_base/
+.env
+.env.*
+*.log
+.pytest_cache/
+venv/
+.venv/
