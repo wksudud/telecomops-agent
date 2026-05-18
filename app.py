@@ -1,4 +1,7 @@
 import json
+import subprocess
+import sys
+from pathlib import Path
 
 import streamlit as st
 
@@ -82,6 +85,22 @@ ACTION_ZH = {
 }
 
 
+ROOT = Path(__file__).resolve().parent
+REQUIRED_DEMO_ASSETS = [
+    ROOT / "data" / "kpi.csv",
+    ROOT / "data" / "alarms.csv",
+    ROOT / "knowledge_base" / "radio_fault_manual.md",
+    ROOT / "knowledge_base" / "transport_fault_manual.md",
+]
+
+
+@st.cache_resource(show_spinner=False)
+def ensure_demo_assets() -> None:
+    if all(path.exists() for path in REQUIRED_DEMO_ASSETS):
+        return
+    subprocess.run([sys.executable, str(ROOT / "scripts" / "generate_mock_data.py")], check=True)
+
+
 def translate_root_cause(value: str, lang: str) -> str:
     if lang == "zh":
         return ROOT_CAUSE_ZH.get(value, value)
@@ -104,10 +123,11 @@ st.title(t["title"])
 st.caption(t["caption"])
 
 try:
+    ensure_demo_assets()
     kpi_df = load_kpi()
     alarms_df = load_alarms()
-except FileNotFoundError:
-    st.warning(t["missing_data"])
+except (FileNotFoundError, subprocess.CalledProcessError) as exc:
+    st.warning(f"{t['missing_data']} ({exc})")
     st.stop()
 
 anomaly_df = detect_anomalies(kpi_df)
