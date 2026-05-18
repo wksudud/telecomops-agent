@@ -2,6 +2,8 @@
 
 [中文文档](README.zh-CN.md) | English
 
+Live demo: https://telecomops-agent.streamlit.app/
+
 A local, mock-data AI operations platform for telecom network fault diagnosis. Built as a resume-grade AI engineering project for a BUPT AI undergraduate targeting AI application development, AI Agent engineering, AIOps, SRE tooling, and telecom network intelligence roles.
 
 This is not a traditional algorithm research project, education product, customer-service bot, or sales assistant.

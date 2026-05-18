@@ -2,6 +2,8 @@
 
 中文文档 | [English](README.md)
 
+在线演示：https://telecomops-agent.streamlit.app/
+
 TelecomOps Agent 是一个基于本地模拟数据的通信网络智能运维项目，用于展示 KPI 异常检测、故障知识检索、根因诊断、多 Agent 工作流追踪和工单生成能力。项目面向 AI 应用开发、AI Agent 工程、AIOps、SRE 工具开发和通信网络智能化岗位。
 
 它不是传统算法研究项目，不是教育产品，也不是客服、销售或售前工具。
